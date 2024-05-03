@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Title</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="/css/icecream.css">
+    </head>
+
+    <body>
+        <header>
+            <!-- place navbar here -->
+        </header>
+        <main>
+            <h2>Ice Cream Cost Calculator</h2>
+            <form class="container col-12" id="ice-cream-form">
+                <div>
+                    <label for="scoops">Number of Scoops ($1.50/Scoop):</label>
+                    <input type="number" id="scoops" name="scoops" min="1" value="1">
+                </div>
+                <div class="checkbox-group">
+                    <label>Toppings:</label><br>
+                    <input type="checkbox" id="sprinkles" name="topping" value="1">
+                    <label for="sprinkles">Jimmies - $0.50</label><br>
+                    <input type="checkbox" id="extra-jimmies" name="topping" value="2">
+                    <label for="extra-jimmies">Even more jimmies - $0.75</label><br>
+                    <input type="checkbox" id="hot-fudge" name="topping" value="3">
+                    <label for="hot-fudge">Hot Fudge - $1.25</label><br>
+                    <input type="checkbox" id="whipped-cream" name="topping" value="4">
+                    <label for="whipped-cream">Whipped Cream - $0.75</label><br>
+                    <button class="btn btn-warning" onclick="SelectedaTopping()">Evaluation of Toppings</button>
+                        <div>
+                        <h5 class="mt-2">Pick one:</h5>
+                        <input type="radio" id="waffle" name="cone" value="W">
+                        <label for="waffle">Waffle Cone</label>
+                        <input class="m-2"  type="radio" id="sugar" name="cone" value="S">
+                        <label for="sugar">Sugar Cone</label>
+                        <input class="m-2" type="radio" id="choco-dipped" name="cone" value="CD">
+                        <label for="choco-dipped">Chocolate-Dipped Cone</label><br>
+                        <button class="btn btn-warning" onclick="SelectedaCone()">Check Cone $</button>
+                        </div>
+                    
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-2">
+                    <button class="btn btn-primary gettotal p-4" type="button" onclick="calculateCost()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z"/>
+                        <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466"/>
+                      </svg> Get Total </button>
+                        </div>
+                    <div class="col-4 ">
+                      <div>
+                        <label>Base Price:</label>
+                        <span id="base-price">$0.00</span>
+                    </div>
+                    <div>
+                        <label>Tax:</label>
+                        <span id="tax">$0.00</span>
+                    </div>
+                    <div>
+                        <label>Total Due:</label>
+                        <span id="total-due">$0.00</span>
+                    </div>
+                    </div>
+                </div>
+                </div>
+               
+                <div class="mt-5">
+                <button  type="button" class="submit-btn btn btn-primary" onclick=""> Submit Order <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-kiss" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M12.493 13.368a7 7 0 1 1 2.489-4.858c.344.033.68.147.975.328a8 8 0 1 0-2.654 5.152 9 9 0 0 1-.81-.622m-3.731-3.22a13 13 0 0 0-1.107.318.5.5 0 1 1-.31-.95c.38-.125.802-.254 1.192-.343.37-.086.78-.153 1.103-.108.16.022.394.085.561.286.188.226.187.497.131.705a1.9 1.9 0 0 1-.31.593q-.115.16-.275.343.16.186.276.347c.142.197.256.397.31.595.055.208.056.479-.132.706-.168.2-.404.262-.563.284-.323.043-.733-.027-1.102-.113a15 15 0 0 1-1.191-.345.5.5 0 1 1 .31-.95c.371.12.761.24 1.109.321q.264.062.446.084a6 6 0 0 0-.502-.584.5.5 0 0 1 .002-.695 5.5 5.5 0 0 0 .5-.577 5 5 0 0 0-.448.082Zm.766-.087-.003-.001-.003-.001zm.002 1.867-.006.001zM6 8c.552 0 1-.672 1-1.5S6.552 5 6 5s-1 .672-1 1.5S5.448 8 6 8m2.757-.563a.5.5 0 0 0 .68-.194.93.93 0 0 1 .813-.493c.339 0 .645.19.813.493a.5.5 0 0 0 .874-.486A1.93 1.93 0 0 0 10.25 5.75c-.73 0-1.356.412-1.687 1.007a.5.5 0 0 0 .194.68M14 9.828c1.11-1.14 3.884.856 0 3.422-3.884-2.566-1.11-4.562 0-3.421Z"/>
+                  </svg></button> </div>
+        
+            </form>
+        
+       
+
+        </main>
+        <footer>
+            <!-- place footer here -->
+        </footer>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+        <script src="/js/icecream.js"></script>
+    </body>
+</html>
